@@ -1,5 +1,11 @@
 import { Component, OnInit } from "@angular/core";
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators
+} from "@angular/forms";
 import { productsColumns, productsData } from "./mock-data";
 
 @Component({
@@ -8,7 +14,6 @@ import { productsColumns, productsData } from "./mock-data";
   styleUrls: ["./form-array.component.scss"]
 })
 export class FormArrayComponent implements OnInit {
-  dynamicForm: FormGroup;
   submitted = false;
 
   toolbar = {
@@ -32,25 +37,18 @@ export class FormArrayComponent implements OnInit {
   columns = productsColumns;
   dataset = productsData;
 
-angForm = new FormGroup({
+  angForm = new FormGroup({
     names: new FormArray([
-      new FormControl('', Validators.required),
-      new FormControl('', Validators.required),
+      new FormControl("", Validators.required),
+      new FormControl("", Validators.required)
     ])
-  })
-  constructor(private fb: FormBuilder) {
-    this.dynamicForm = this.fb.group({
-      array: this.fb.array([])
-    });
-  }
+  });
+  constructor(private fb: FormBuilder) {}
 
-  ngOnInit() {
-    this.rows.push(this.fb.group({ lookup: "" }));
-    this.rows.push(this.fb.group({ lookup: "" }));
-  }
+  ngOnInit() {}
 
-get names(): FormArray {
-    return this.angForm.get('names') as FormArray;
+  get names(): FormArray {
+    return this.angForm.get("names") as FormArray;
   }
   onFormSubmit(): void {
     for (let i = 0; i < this.names.length; i++) {
@@ -58,7 +56,7 @@ get names(): FormArray {
     }
   }
   addNameField() {
-    this.names.push(new FormControl('', Validators.required));
+    this.names.push(new FormControl("", Validators.required));
   }
 
   deleteNameField(index: number) {
@@ -66,38 +64,5 @@ get names(): FormArray {
       this.names.removeAt(index);
     }
     console.log(this.names.length);
-  }
-
-
-
-
-
-
-
-
-  get rows(): FormArray {
-    return this.dynamicForm.get("array") as FormArray;
-  }
-
-  addRow() {
-    this.rows.push(this.fb.group({ lookup: "" }));
-  }
-
-  removeRow(i: number) {
-    this.rows.removeAt(i);
-  }
-
-  onSubmit() {
-    this.submitted = true;
-
-    // stop here if form is invalid
-    if (this.dynamicForm.invalid) {
-      return;
-    }
-
-    // display form values on success
-    alert(
-      "SUCCESS!! :-)\n\n" + JSON.stringify(this.dynamicForm.value, null, 4)
-    );
   }
 }
