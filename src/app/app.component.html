@@ -6,17 +6,11 @@
 <soho-icons-empty *ngIf="!useUpliftIcons"></soho-icons-empty>
 <soho-icons-empty-uplift *ngIf="useUpliftIcons"></soho-icons-empty-uplift>
 
-<nav
-  soho-application-menu
-  class="is-personalizable"
-  [filterable]="true"
-  [openOnLarge]="false"
-  [dismissOnClickMobile]="true"
-  (menuVisibility)="onMenuVisibility($event)"
->
-  <div soho-searchfield-wrapper>
-    <label class="audible" for="application-menu-searchfield">Search</label>
-    <input
+<nav soho-application-menu class="is-personalizable" [filterable]="true" [openOnLarge]="false"
+	[dismissOnClickMobile]="true" (menuVisibility)="onMenuVisibility($event)">
+	<div soho-searchfield-wrapper>
+		<label class="audible" for="application-menu-searchfield">Search</label>
+		<input
       soho-searchfield
       id="application-menu-searchfield"
       [clearable]="true"
@@ -24,7 +18,9 @@
   </div>
 </nav>
 <div class="page-container no-scroll">
-  <app-header></app-header>
-  <div id="maincontent" class="page-container scrollable" role="main"></div>
+	<app-header></app-header>
+	<div id="maincontent" class="page-container scrollable" role="main">
+		<ab-form-array></ab-form-array>
+	</div>
 </div>
 <div soho-personalize (changetheme)="onChangeTheme($event)"></div>

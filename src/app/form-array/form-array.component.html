@@ -1,0 +1,20 @@
+<div class="container">
+	<h3>Angular 10 FormArray with lookup</h3>
+  <p>&nbsp;</p>
+	<form [formGroup]="angForm" (ngSubmit)="onFormSubmit()">
+		<div formArrayName="names">
+			<ng-container *ngFor="let name of names.controls; index as idx" class="form-group">
+				<div class="row">
+					<!-- <label *ngIf="name.invalid" [ngClass] = "'error'"> Name is required. </label> -->
+					<label soho-label >Lookup {{idx + 1}}</label>
+					<input [formControlName]="idx" placeholder="Enter a Name" class="form-control field" soho-lookup [columns]="columns" [dataset]="dataset" [options]="options">
+					<button  icon="add" soho-button="btn-icon" type="button" (click)="addNameField()" class="btn btn-success" [ngClass] = "'pad'"></button>
+					<button icon="close" soho-button="btn-icon" (click)="deleteNameField(idx)" class="btn btn-danger"></button>
+				</div>
+			</ng-container>
+		</div>
+		<div>
+			<button type="submit" [soho-button]="primary">Submit</button>
+		</div>
+	</form>
+</div>

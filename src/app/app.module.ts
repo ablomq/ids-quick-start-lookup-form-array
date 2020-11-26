@@ -11,11 +11,19 @@ import { AppComponent } from "./app.component";
 import { SohoLocaleInitializerModule } from "./locale/soho-locale-initializer.module";
 import { HeaderComponent } from "./header/header.component";
 import { PersonalizeMenuComponent } from "./personalize-menu/personalize-menu.component";
+import { ReactiveFormsModule } from "@angular/forms";
+import { FormArrayComponent } from "./form-array/form-array.component";
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, PersonalizeMenuComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    PersonalizeMenuComponent,
+    FormArrayComponent
+  ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     SohoLocaleModule,
     SohoButtonModule,
     SohoLocaleInitializerModule,
